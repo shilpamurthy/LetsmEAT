@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>mEAT</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/LetsMeat/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/LetsMeat/css/dashboard.css" rel="stylesheet">
+
+
+      <link href='/LetsMeat/fullcalendar/fullcalendar.css' rel='stylesheet' />
+    <link href='/LetsMeat/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+  
+    <!--jQuery-->
+    <script src='/LetsMeat/fullcalendar/lib/jquery.min.js'></script>
+    <script src='/LetsMeat/fullcalendar/lib/moment.min.js'></script>
+    <script src='/LetsMeat/fullcalendar/lib/jquery-ui.custom.min.js'></script>
+  
+    <!--FullCalendar-->
+    <script src='/LetsMeat/fullcalendar/fullcalendar.min.js'></script>
+    <script type="text/javascript">
+    
+    /*
+      jQuery document ready
+    */
+    
+      $(document).ready(function()
+      {
+      
+        $('#calendar').fullCalendar(
+        {
+          /*
+            header option will define our calendar header.
+            left define what will be at left position in calendar
+            center define what will be at center position in calendar
+            right define what will be at right position in calendar
+          */
+          header:
+          {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+          },
+          /*
+            defaultView option used to define which view to show by default,
+            for example we have used agendaWeek.
+          */
+          defaultView: 'agendaWeek'
+
+        });
+      
+      });
+
+    
+      (function() {
+
+          $("#Search3").click(function() {
+              var param1Value = $("#Search1").val();
+              var param2Value = $("#Search2").val();
+              $.ajax({
+                  url : "CalculatorServlet",
+                  type: "get",
+                  data: {param1: param1Value, param2: param2Value},                 
+                  dataType: "text",                   
+                  success: success,
+                  error: error
+              });
+          });
+
+          function success(data, textStatus, jqXHR)
+          {
+          	$('#pleaseTest').text(data);
+          }
+
+          function error(jqXHR, textStatus, errorThrown)
+          {
+              alert("error "+textStatus);
+          }
+      })();
+    </script>
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="Home.html">Let's mEAT</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="mEAT.html">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="Home.html">Home</a></li>
+            <li class="active"><a href="mEAT.html">mEAT</a></li>
+            <li><a href="#">Friends</a></li>
+            <li><a href="#">Groups</a></li>
+            <li><a href="">Lists</a></li>
+            <li><a href="">Events</a></li>
+            <li><a href="">Messages</a></li>
+          </ul>
+        </div>
+        <form class="nav nav-sidebar pull-right" id='form1'>
+          <div id='Search1'>
+            <input type="text" class="form-control" placeholder="Food">
+          </div>
+          <div id='Search2'>
+            <input type="text" class="form-control" placeholder="Place">
+          </div>
+          <div id='Search3'>
+            <input type="submit" value="Search" class="btn"/>
+          </div>
+        </form>
+        <h1 class="page-header">Dashboard</h1>
+        <div id='calendar'></div>
+
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/LetsMeat/js/bootstrap.min.js"></script>
+  </body>
+</html>
+  

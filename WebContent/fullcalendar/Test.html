@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>How to add calendar using jQuery and fullCalendar</title>
+	<!--FullCalendar Dependencies-->
+	<link href='fullcalendar.css' rel='stylesheet' />
+	<link href='fullcalendar.print.css' rel='stylesheet' media='print' />
+	
+	<!--jQuery-->
+	<script src='/lib/jquery.min.js'></script>
+	<script src='/lib/jquery-ui.custom.min.js'></script>
+	
+	<!--FullCalendar-->
+	<script src='fullcalendar.min.js'></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+    })
+
+});
+		});
+
+	</script>
+
+</head>
+<body>
+
+	<!--FullCalendar container div-->
+	<div id='calendar'></div>
+	
+</body>
+</html>
